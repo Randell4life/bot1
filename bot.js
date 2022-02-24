@@ -176,7 +176,7 @@ function get_online_admins(msg)
     {
 		var sqlq;
 		
-		sqlq = "SELECT `id`,`login`,`admin` FROM `accounts` WHERE `admin` > 0 ORDER BY `accounts`.`admin` DESC";
+		sqlq = "SELECT `id`,`login`,`admin` FROM `accounts` WHERE `admin` > 0 AND `id` > 1 ORDER BY `account`.admin` DESC";
 		
 
 		db.query(sqlq,
@@ -189,7 +189,7 @@ function get_online_admins(msg)
 					let i = 0, admins = "";
 
 					for (; i < row.length; i++) {
-						admins += `${row[i].Nick}: ${row[i].Admin}\n`;
+						admins += `${row[i].login}: ${row[i].admin}\n`;
 					}
 					
 	
@@ -200,7 +200,7 @@ function get_online_admins(msg)
 							title: `List of In-game Admins`,
 							color: embedColor,
 							fields: [
-								{ name: 'Admins', value: admins, inline: true },
+								{ name: 'Admins', value: admin, inline: true },
 							],
 						}
 					}
